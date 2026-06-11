@@ -9,7 +9,8 @@
   "scripts": {
     "test": "vitest --run",
     "build": "tsup",
-    "app": "tsx src/index.ts"
+    "app": "tsx src/index.ts",
+    "opencode": "npm run app"
   },
   "keywords": [],
   "author": "",

@@ -1,27 +1,10 @@
-import path from 'node:path';
-
 import { select } from '@inquirer/prompts';
 import { rimraf } from 'rimraf';
 import chalk from 'chalk';
 
-import { getHomeRoute } from '@/utils/home_route';
-import { configFolderName } from '@/utils/constants';
 import { buildDockerImage } from '@/commands/build_docker_image';
 import { deleteDockerImage } from '@/commands/delete_docker_image';
-
-async function getFilesPath() {
-  const homeRoute = await getHomeRoute();
-  const filesPath = path.join(homeRoute, configFolderName(), 'local');
-
-  return filesPath;
-}
-
-async function getConfigPath() {
-  const homeRoute = await getHomeRoute();
-  const filesPath = path.join(homeRoute, configFolderName(), 'config');
-
-  return filesPath;
-}
+import { getConfigPath, getFilesPath } from '@/utils/get_paths';
 
 export async function debugHandler() {
   const choices = [
