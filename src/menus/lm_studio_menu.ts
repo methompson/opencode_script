@@ -1,4 +1,4 @@
-import { select, input } from '@inquirer/prompts';
+import { select, input, search } from '@inquirer/prompts';
 import chalk from 'chalk';
 
 import { getProviderDetails } from '@/menus/get_provider_details';
@@ -117,9 +117,28 @@ export async function loadModelsMenu(config: OpenCodeConfig) {
   ];
 
   // Step 2: Select Model
-  const selectedModelName = await select({
+  // const selectedModelName = await select({
+  //   message: 'Select a model:',
+  //   choices,
+  // });
+
+  const selectedModelName = await search({
     message: 'Select a model:',
-    choices,
+    source: async (input) => {
+      const vals = input?.split(' ').map((s) => s.toLowerCase());
+
+      const filtered = vals
+        ? models.filter((m) => {
+            const lcModel = m.toLowerCase();
+            return vals.every((v) => lcModel.includes(v));
+          })
+        : models;
+
+      return [
+        { name: 'Quit', value: 'quit' },
+        ...filtered.map((m) => ({ name: m, value: m })),
+      ];
+    },
   });
 
   if (selectedModelName === 'quit') {
@@ -129,7 +148,7 @@ export async function loadModelsMenu(config: OpenCodeConfig) {
 
   // Step 3: Input Context Window Size
   const contextWindowInput = await input({
-    message: 'Enter context window size (e.g., 16384):',
+    message: 'Enter context window size:',
     default: '24576',
     validate: (value) => {
       const num = parseInt(value, 10);
