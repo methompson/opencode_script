@@ -111,17 +111,6 @@ export async function loadModelsMenu(config: OpenCodeConfig) {
     return;
   }
 
-  const choices = [
-    { name: 'Quit', value: 'quit' },
-    ...models.map((m) => ({ name: m, value: m })),
-  ];
-
-  // Step 2: Select Model
-  // const selectedModelName = await select({
-  //   message: 'Select a model:',
-  //   choices,
-  // });
-
   const selectedModelName = await search({
     message: 'Select a model:',
     source: async (input) => {
