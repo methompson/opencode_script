@@ -8,10 +8,16 @@ import { runOpenCode } from '@/commands/run_opencode';
 import { isDockerDaemonRunning } from '@/utils/is_docker_running';
 import { dockerNotRunningMenu } from '@/menus/docker_not_running_menu';
 import { debugHandler } from './debug_handler';
+import { lmStudioMenu } from '@/menus/lm_studio_menu';
 
 export async function defaultHandler(arg: unknown, opt: unknown) {
+  console.log({ opt });
   if (isRecord(opt) && opt.debug) {
     return debugHandler();
+  }
+
+  if (isRecord(opt) && opt.model) {
+    return lmStudioMenu();
   }
 
   const dir = isString(arg) ? arg : process.cwd();

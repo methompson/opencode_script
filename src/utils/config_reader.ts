@@ -6,7 +6,7 @@ import { isOpencodeConfig, type OpencodeConfig } from '@/types/opencode_config';
 
 export async function readOpenCodeConfiguration(): Promise<OpencodeConfig> {
   const configPath = await getConfigPath();
-  const configFilePath = path.join(configPath, 'config.jsonc');
+  const configFilePath = path.join(configPath, 'opencode', 'opencode.jsonc');
 
   const content = await readFile(configFilePath, 'utf-8');
   const config = JSON.parse(content);
