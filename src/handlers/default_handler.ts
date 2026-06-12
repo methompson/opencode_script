@@ -11,7 +11,6 @@ import { debugHandler } from './debug_handler';
 import { lmStudioMenu } from '@/menus/lm_studio_menu';
 
 export async function defaultHandler(arg: unknown, opt: unknown) {
-  console.log({ opt });
   if (isRecord(opt) && opt.debug) {
     return debugHandler();
   }

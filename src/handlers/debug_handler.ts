@@ -22,8 +22,6 @@ export async function debugHandler() {
     pageSize: choices.length,
   });
 
-  console.log({ operationType });
-
   switch (operationType) {
     case 'files': {
       // Put a warning here?

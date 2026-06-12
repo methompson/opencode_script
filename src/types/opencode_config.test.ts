@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { isOpencodeConfig } from './opencode_config';
+import { isOpenCodeConfig } from './opencode_config';
 
-describe('isOpencodeConfig', () => {
+describe('isOpenCodeConfig', () => {
   it('should return true for a valid config', () => {
     const validConfig = {
       $schema: 'https://example.com/schema.json',
@@ -20,7 +20,7 @@ describe('isOpencodeConfig', () => {
       model: 'gpt-4',
       small_model: 'gpt-3.5-turbo',
     };
-    expect(isOpencodeConfig(validConfig)).toBe(true);
+    expect(isOpenCodeConfig(validConfig)).toBe(true);
   });
 
   it('should return true for a config with optional fields as undefined or null', () => {
@@ -39,7 +39,7 @@ describe('isOpencodeConfig', () => {
       model: undefined,
       small_model: null,
     };
-    expect(isOpencodeConfig(validConfig)).toBe(true);
+    expect(isOpenCodeConfig(validConfig)).toBe(true);
   });
 
   it('should return false if $schema is not a string', () => {
@@ -47,7 +47,7 @@ describe('isOpencodeConfig', () => {
       $schema: 123,
       provider: {},
     };
-    expect(isOpencodeConfig(invalidConfig)).toBe(false);
+    expect(isOpenCodeConfig(invalidConfig)).toBe(false);
   });
 
   it('should return false if provider is not an object of generator', () => {
@@ -55,7 +55,7 @@ describe('isOpencodeConfig', () => {
       $schema: 'https://example.com/schema.json',
       provider: 'not-an-object',
     };
-    expect(isOpencodeConfig(invalidConfig)).toBe(false);
+    expect(isOpenCodeConfig(invalidConfig)).toBe(false);
   });
 
   it('should return false if provider details are incorrect', () => {
@@ -72,7 +72,7 @@ describe('isOpencodeConfig', () => {
         },
       },
     };
-    expect(isOpencodeConfig(invalidConfig)).toBe(false);
+    expect(isOpenCodeConfig(invalidConfig)).toBe(false);
   });
 
   it('should return false if provider models are incorrect', () => {
@@ -91,7 +91,7 @@ describe('isOpencodeConfig', () => {
         },
       },
     };
-    expect(isOpencodeConfig(invalidConfig)).toBe(false);
+    expect(isOpenCodeConfig(invalidConfig)).toBe(false);
   });
 
   it('should return false if model is not a string or null/undefined', () => {
@@ -100,6 +100,6 @@ describe('isOpencodeConfig', () => {
       provider: {},
       model: 123,
     };
-    expect(isOpencodeConfig(invalidConfig)).toBe(false);
+    expect(isOpenCodeConfig(invalidConfig)).toBe(false);
   });
 });

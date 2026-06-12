@@ -15,14 +15,14 @@ interface ProviderOptions {
   baseURL: string;
 }
 
-interface ProviderDetails {
+export interface ProviderDetails {
   npm: string;
   name: string;
   options: ProviderOptions;
   models: Record<string, ModelInfo>;
 }
 
-export interface OpencodeConfig {
+export interface OpenCodeConfig {
   $schema: string;
   provider: Record<string, ProviderDetails>;
   model?: string;
@@ -49,7 +49,7 @@ const isProviderDetails = typeGuardGenerator<ProviderDetails>({
   models: isObjectOfGenerator(isModelInfo),
 });
 
-export const isOpencodeConfig: TypeGuard<OpencodeConfig> = typeGuardGenerator({
+export const isOpenCodeConfig: TypeGuard<OpenCodeConfig> = typeGuardGenerator({
   $schema: isString,
   provider: isObjectOfGenerator(isProviderDetails),
   model: isStringOruNdefinedOrNull,
