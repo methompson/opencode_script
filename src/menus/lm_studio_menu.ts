@@ -32,7 +32,6 @@ export async function lmStudioMenu() {
       break;
     case 'quit':
       process.exit(0);
-      break;
   }
 }
 

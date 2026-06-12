@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "bin": {
-    "opencode": "tsx src/index.ts"
-  },
   "scripts": {
     "test": "vitest --run",
     "build": "tsup",
-    "app": "tsx src/index.ts",
-    "opencode": "npm run app"
+    "opencode": "tsx src/index.ts"
   },
   "keywords": [],
   "author": "",

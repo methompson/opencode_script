@@ -53,14 +53,12 @@ export async function debugHandler() {
       );
       break;
     }
-    case 'buildImage': {
+    case 'buildImage':
       await buildDockerImage();
       break;
-    }
-    case 'deleteImage': {
+    case 'deleteImage':
       await deleteDockerImage();
       break;
-    }
     case 'quit':
       return;
     default:
